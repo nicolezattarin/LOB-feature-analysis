@@ -9,6 +9,10 @@ __pycache__/
 #env extensions
 *spec-file.txt
 
+#data
+*2505133.csv
+*data/
+
 # C extensions
 *.so
 
