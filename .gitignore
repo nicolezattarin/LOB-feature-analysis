@@ -13,9 +13,6 @@ __pycache__/
 *2505133.csv
 *data/
 
-# C extensions
-*.so
-
 # Distribution / packaging
 .Python
 build/
