@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: db-lob
-Version: 0.0.4
+Version: 0.0.5
 Summary: A LimitOrderBook implementation for Deutsche Börse. Now with Numpy interfacing.
 Home-page: https://gitlab.com/XSORCapital/db_lob
 Author: Andrea Perin, Federico Graceffa
