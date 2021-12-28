@@ -21,7 +21,7 @@
 3. Work in the new enviroment:
     `conda activate projectenv`
 
-### For MAC users
+### For OSX users
 Setup a VM with conda and install the package.
 
 Or, for us to work:
