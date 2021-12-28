@@ -16,8 +16,6 @@
     
     `cp -r path/package/db_lob-0.0.5.dist-info .`
     
-    `chmod +x db_lob.cpython-39-x86_64-linux-gnu.so` 
-
 3. Work in the new enviroment:
     `conda activate projectenv`
 
