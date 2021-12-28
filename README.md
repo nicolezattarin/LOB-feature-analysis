@@ -3,7 +3,7 @@
 ##  Setup 
 ### For Linux users
 1. Create environment:
-2. 
+
     `conda list --explicit > spec-file.txt`
     
     `conda create --name projectenv --prefix ./envs --file spec-file.txt`
