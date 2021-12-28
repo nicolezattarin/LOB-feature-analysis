@@ -5,7 +5,8 @@ __pycache__/
 
 # mac 
 *.DS_Store
-
+#data
+*2505133.csv
 #env extensions
 *spec-file.txt
 
