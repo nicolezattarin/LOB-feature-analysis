@@ -9,6 +9,7 @@
 
 2. Install package: go to `*/anaconda3/envs/projectenv/lib/python3.<version_num>/site-packages` in your file system and paste the .so file and the folder that you can find in `package` folder. 
     For instance:
+    
     `cd /opt/anaconda3/envs/projectenv/lib/python3.8/site-packages`
     
     `cp path/package/db_lob.cpython-39-x86_64-linux-gnu.so .`
