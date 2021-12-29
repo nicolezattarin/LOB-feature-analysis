@@ -13,6 +13,7 @@ __pycache__/
 #data
 *2505133.csv
 *data/
+*data_cleaned/
 
 # Distribution / packaging
 .Python
