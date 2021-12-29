@@ -30,3 +30,5 @@ Or, for us to work:
 * Work in the env with the package intalled: `conda activate project`
 * in Jupyter lab use project kernel to run jupyter notebooks, while xsor env works only running python scripts
 
+## Main changes history
+* Zatta 29/12: 
