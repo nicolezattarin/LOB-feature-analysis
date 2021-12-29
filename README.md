@@ -1,5 +1,5 @@
 # LOB-feature-analysis
-upload .csv files [here](https://drive.google.com/drive/u/0/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk)
+upload .csv files [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk?usp=sharing)
 ##  Setup 
 ### For Linux users
 1. Create environment:
