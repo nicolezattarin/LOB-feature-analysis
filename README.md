@@ -25,7 +25,7 @@ Setup a VM with conda and install the package.
 
 Or, for us to work:
 
-* Download a RDP client (from app store [Microsoft Remote Desktop](https://apps.apple.com/it/app/microsoft-remote-desktop/id1295203466?mt=12)
+* Download a RDP client (from app store [Microsoft Remote Desktop](https://apps.apple.com/it/app/microsoft-remote-desktop/id1295203466?mt=12))
 * Work in the env with the package intalled: `conda activate project`
 * in Jupyter lab use project kernel to run jupyter notebooks, while xsor env works only running python scripts
 
