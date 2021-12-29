@@ -6,10 +6,10 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--messages_file_path", default='data/2505133.csv', help="filename.", type=str)
+parser.add_argument("--messages_file_path", default='2505133.csv', help="filename.", type=str)
 parser.add_argument("--volume_threshold", default=1000000, help="Volume threshold", type=int)
 parser.add_argument("--ticksize", default=0.0001, help="ticksize", type=float)
-parser.add_argument("--data_frac", default=0.9, help="fraction of messages to read", type=float)
+parser.add_argument("--data_frac", default=0.95, help="fraction of messages to read", type=float)
 
 
 def main(messages_file_path, volume_threshold, ticksize, data_frac):
@@ -34,19 +34,21 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
 
     # ZATTA fix datafrac = 1
     print("Building the LOB...")
+    print(messages_file_path)
     spread = []
     vbar_label = 0
     n_msg = int(len(messages) * data_frac)
     for msg in tqdm(messages[:n_msg], desc="Reconstructing the book"):
         bars = book.generic_incremental_update(msg)
-
         if bars is not None and vbar_label == 0:
             vbars = pd.DataFrame.from_records(bars[0])
             fbars = pd.DataFrame.from_records(bars[1])
             vbars['volume_bar_label'] = vbar_label
             fbars['volume_bar_label'] = vbar_label
             vbar_label += 1
-        elif bars is not None:
+            ask_side, bid_side = book.askTree, book.bidTree
+            spread.append(np.abs(min(ask_side)-max(bid_side)))
+        elif bars is not None and vbar_label != 0:
             vtemp = pd.DataFrame.from_records(bars[0])
             ftemp = pd.DataFrame.from_records(bars[1])
             vtemp['volume_bar_label'] = vbar_label
@@ -54,8 +56,8 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
             vbars = vbars.append(vtemp)
             fbars = fbars.append(ftemp)
             vbar_label += 1
-        ask_side, bid_side = book.askTree, book.bidTree
-        spread.append(ask_side-bid_side)
+            ask_side, bid_side = book.askTree, book.bidTree
+            spread.append(np.abs(min(ask_side)-max(bid_side)))
 
     # function to read the data and return a df
     def df_from_book(book):
