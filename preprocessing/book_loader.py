@@ -6,7 +6,7 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--messages_file_path", default='2505133.csv', help="filename.", type=str)
+parser.add_argument("--messages_file_path", default='../data/2505133.csv', help="filename.", type=str)
 parser.add_argument("--volume_threshold", default=1000000, help="Volume threshold", type=int)
 parser.add_argument("--ticksize", default=0.0001, help="ticksize", type=float)
 parser.add_argument("--data_frac", default=0.95, help="fraction of messages to read", type=float)
@@ -47,21 +47,19 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
         if bars is not None and time == 0:
             tbars = pd.DataFrame.from_records(bars[0])
             fbars = pd.DataFrame.from_records(bars[1])
-            tbars['time'] = time
-            fbars['time'] = time
+            tbars['timetab_volume_bar'] = time
+            fbars['timetab_volume_bar'] = time
             time += 1
-            ask_side, bid_side = book.askTree, book.bidTree
+            # ask_side, bid_side = book.askTree, book.bidTree
         elif bars is not None and time != 0:
             ttemp = pd.DataFrame.from_records(bars[0])
             ftemp = pd.DataFrame.from_records(bars[1])
-            ttemp['time'] = time
-            ftemp['time'] = time
+            ttemp['timetab_volume_bar'] = time
+            ftemp['timetab_volume_bar'] = time
             tbars = tbars.append(ttemp)
             fbars = fbars.append(ftemp)
             time += 1
-            ask_side, bid_side = book.askTree, book.bidTree
-
-
+            # ask_side, bid_side = book.askTree, book.bidTree
 
     # function to read the data and return a df
     def df_from_book(book):
@@ -84,7 +82,7 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
     # saving the LOB as a csv file
     df = df_from_book(book)
     import os
-    dir = 'data_cleaned'
+    dir = '../data_cleaned'
     if os.path.isdir(dir)==False:
             os.mkdir(dir)
     df.to_csv(dir+'/LOB.csv', index=False)
