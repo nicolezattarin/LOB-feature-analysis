@@ -89,12 +89,6 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
             os.mkdir(dir)
     df.to_csv(dir+'/LOB.csv', index=False)
 
-    # saving the spread as a csv file
-    spread = pd.DataFrame(spread)
-    spread ['time'] = np.arange(0,len(spread),1)
-    spread.columns = ['spread', 'time']
-    spread.to_csv(dir+'/spread.csv', index=False)
-
     # saving tbars fbars
     # tbars are the trades that participate in the volume bar.
     # fbars is the set of raw features for all timestamps inside the volume bar.
