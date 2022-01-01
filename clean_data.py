@@ -15,9 +15,13 @@ parser.add_argument("--data_frac", default=0.95, help="fraction of messages to r
 def main(messages_file_path, volume_threshold, ticksize, data_frac):
     """
     Takes a csv file with messages and builds the LOB. 
-    The LOB is then saved in a .csv file, in order to be available also without employing directly the package db_lob
-    This code stores also the time evolution of the spread and save it in a .csv file.
-    
+    The LOB is then saved in a .csv file, in order to be available also without employing directly the package db_lob.
+
+    fbars and tbars are the set of trades that participate in the volume bar and the set of 
+    raw features for all timestamps inside the volume bar. such dfs must be subjected to further 
+    processing: final features may be computed from both, aggregations on these dfs will need 
+    to be different between the two.
+
     args:
         messages_file_path: path to the csv file containing the messages
         volume_threshold: volume threshold for the messages to be considered
@@ -35,29 +39,29 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
     # ZATTA fix datafrac = 1
     print("Building the LOB...")
     print(messages_file_path)
-    spread = []
-    vbar_label = 0
+
+    time = 0
     n_msg = int(len(messages) * data_frac)
     for msg in tqdm(messages[:n_msg], desc="Reconstructing the book"):
         bars = book.generic_incremental_update(msg)
-        if bars is not None and vbar_label == 0:
-            vbars = pd.DataFrame.from_records(bars[0])
+        if bars is not None and time == 0:
+            tbars = pd.DataFrame.from_records(bars[0])
             fbars = pd.DataFrame.from_records(bars[1])
-            vbars['volume_bar_label'] = vbar_label
-            fbars['volume_bar_label'] = vbar_label
-            vbar_label += 1
+            tbars['time'] = time
+            fbars['time'] = time
+            time += 1
             ask_side, bid_side = book.askTree, book.bidTree
-            spread.append(np.abs(min(ask_side)-max(bid_side)))
-        elif bars is not None and vbar_label != 0:
-            vtemp = pd.DataFrame.from_records(bars[0])
+        elif bars is not None and time != 0:
+            ttemp = pd.DataFrame.from_records(bars[0])
             ftemp = pd.DataFrame.from_records(bars[1])
-            vtemp['volume_bar_label'] = vbar_label
-            ftemp['volume_bar_label'] = vbar_label
-            vbars = vbars.append(vtemp)
+            ttemp['time'] = time
+            ftemp['time'] = time
+            tbars = tbars.append(ttemp)
             fbars = fbars.append(ftemp)
-            vbar_label += 1
+            time += 1
             ask_side, bid_side = book.askTree, book.bidTree
-            spread.append(np.abs(min(ask_side)-max(bid_side)))
+
+
 
     # function to read the data and return a df
     def df_from_book(book):
@@ -87,12 +91,14 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
 
     # saving the spread as a csv file
     spread = pd.DataFrame(spread)
+    spread ['time'] = np.arange(0,len(spread),1)
+    spread.columns = ['spread', 'time']
     spread.to_csv(dir+'/spread.csv', index=False)
 
     # saving tbars fbars
-    # vbars are the trades that participate in the volume bar.
+    # tbars are the trades that participate in the volume bar.
     # fbars is the set of raw features for all timestamps inside the volume bar.
-    vbars.to_csv(dir+'/vbars.csv', index=False)
+    tbars.to_csv(dir+'/tbars.csv', index=False)
     fbars.to_csv(dir+'/fbars.csv', index=False)
 
 if __name__ == "__main__":
