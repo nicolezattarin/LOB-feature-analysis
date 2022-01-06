@@ -20,6 +20,10 @@ Upload .csv files [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3
     
 3. Work in the new enviroment:
     `conda activate projectenv`
+    
+4. Create kernel:
+    `conda install ipykernel`
+    `ipython kernel install --user --name=projectenv`
 
 ### For OSX users
 Setup a VM with conda and install the package.
