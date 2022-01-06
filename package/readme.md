@@ -48,6 +48,7 @@ as input, and based on its underlying message type flag, calls the appropriate
 
 #### Feature extraction and volume bars
 The LOB is not only a logging device, but it can also act as a data generator.
+
 The basic idea is that, for each state of the book, a set of features can be
 extracted/computed. These features can then be collected and analyzed as a
 standard "rectangular" dataset (i.e., a simple CSV or columnar file format; we

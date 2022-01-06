@@ -27,6 +27,7 @@ print("Messages read!")
 volume_threshold = 1000000
 ticksize = 0.0001
 book = lob.LimitOrderBook(volume_threshold, ticksize)
+print(dir(book))
 
 # Step 3: loop over the messages and feed them to the lob
 # Just for testing, let's just look at the first N% messages.
