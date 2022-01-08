@@ -13,8 +13,9 @@ parser.add_argument("--maxlevel", default=10, help="maximum level of the book to
 parser.add_argument("--data_frac", default=1, help="fraction of messages to read", type=float)
 
 def main(data, volume_threshold, ticksize, maxlevel, data_frac):
-
-   # logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+    """
+    
+    """
 
     messages = lob.parse_FullMessages(data)
     book = lob.LimitOrderBook(volume_threshold, ticksize)
@@ -27,7 +28,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
         ask_side, bid_side = book.askTree, book.bidTree
 
         if not (any(ask_side) and any(bid_side)): continue
-
+        
         a = list(ask_side.values())
         b = list(bid_side.values())
 
@@ -42,7 +43,6 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
         bid_volumes.append([x.totalVolume for x in b])
         mid_price.append(np.abs(a[0].price-b[0].price)/ticksize)
     
-
     df = pd.DataFrame(time,columns=['time'])
     df['ask_volumes'] = ask_volumes
     df['ask_prices'] = ask_prices
@@ -54,7 +54,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     dir = '../data_cleaned'
     if os.path.isdir(dir)==False:
             os.mkdir(dir)
-    df.to_csv(dir+'/OFI_{}_levels.csv'.format(maxlevel), index=False)
+    df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel), index=False)
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())
