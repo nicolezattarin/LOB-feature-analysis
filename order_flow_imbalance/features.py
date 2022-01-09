@@ -10,7 +10,7 @@ parser.add_argument("--data", default='../data/2505133.csv', help="filename.", t
 parser.add_argument("--volume_threshold", default=1000000, help="Volume threshold", type=int)
 parser.add_argument("--ticksize", default=0.0001, help="ticksize", type=float)
 parser.add_argument("--maxlevel", default=10, help="maximum level of the book to study", type=int)
-parser.add_argument("--data_frac", default=1, help="fraction of messages to read", type=float)
+parser.add_argument("--data_frac", default=0.01, help="fraction of messages to read", type=float)
 
 def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     """
@@ -31,7 +31,6 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
         
         a = list(ask_side.values())
         b = list(bid_side.values())
-
         if len(a) < maxlevel or len(b) < maxlevel: continue
         time.append(book.datetime)
         a = a[:maxlevel]
@@ -44,17 +43,18 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
         mid_price.append(np.abs(a[0].price-b[0].price)/ticksize)
     
     df = pd.DataFrame(time,columns=['time'])
-    df['ask_volumes'] = ask_volumes
-    df['ask_prices'] = ask_prices
-    df['bid_prices'] = bid_prices
-    df['bid_volumes'] = bid_volumes
-    df['mid_price'] = mid_price
+    for i in range(maxlevel):
+        df['ask_price_{}'.format(i)] = np.array(ask_prices, dtype=object)[:,i]
+        df['ask_volume_{}'.format(i)] = np.array(ask_volumes, dtype=object)[:,i]
+        df['bid_price_{}'.format(i)] = np.array(bid_prices, dtype=object)[:,i]
+        df['bid_volume_{}'.format(i)] = np.array(bid_volumes, dtype=object)[:,i]
+    df['mid_price'.format(i)] = mid_price
 
     import os
     dir = '../data_cleaned'
     if os.path.isdir(dir)==False:
             os.mkdir(dir)
-    df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel), index=False)
+    df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel))
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())
