@@ -36,7 +36,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
 
         a = ask[:maxlevel]
         b = bid[:maxlevel]
-        
+
         try: old_a and old_b
         except: #if old_a and old_b are not defined
             old_a = a
@@ -64,7 +64,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     if os.path.isdir(dir)==False:
             os.mkdir(dir)
     print('Saving the DataFrame to {}'.format(dir))
-    df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel))
+    df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel), index=False)
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())
