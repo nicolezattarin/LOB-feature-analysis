@@ -14,7 +14,16 @@ parser.add_argument("--data_frac", default=0.01, help="fraction of messages to r
 
 def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     """
-    
+    Computes the necessary quantities to compute the order flow imbalance, 
+    see R. Cont, A. Kukanov, S. Stoikov, 'The Price Impact of Order Book Events', and
+    K. Xu1, M.D. Gould1, and S.D. Howison1, 'Multi-Level Order-Flow Imbalance in a Limit Order Book'
+
+    args:
+        data: path to the dataframe containing the raw messages
+        volume_threshold: volume threshold build a volume bar
+        ticksize: discretization interval of prices at which a security is
+        maxleveò: maximum level of the book to study
+        data_frac: fraction of messages to read
     """
 
     messages = lob.parse_FullMessages(data)
