@@ -43,7 +43,8 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
             old_b = b
         else: #check if the book has changed
             if np.all(a == old_a) and np.all(b == old_b): continue
-
+        old_a = a
+        old_b = b
         ask_prices.append([x.price for x in a])
         ask_volumes.append([x.totalVolume for x in a])
         bid_prices.append([x.price for x in b])
