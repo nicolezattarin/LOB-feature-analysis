@@ -43,7 +43,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
         mid_price.append(np.abs(a[0].price-b[0].price)/ticksize)
     
     df = pd.DataFrame(time,columns=['time'])
-    for i in range(maxlevel):
+    for i in tqdm (range(maxlevel), desc = 'Assembling levels of the DataFrame'):
         df['ask_price_{}'.format(i)] = np.array(ask_prices, dtype=object)[:,i]
         df['ask_volume_{}'.format(i)] = np.array(ask_volumes, dtype=object)[:,i]
         df['bid_price_{}'.format(i)] = np.array(bid_prices, dtype=object)[:,i]
@@ -54,6 +54,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     dir = '../data_cleaned'
     if os.path.isdir(dir)==False:
             os.mkdir(dir)
+    print('Saving the DataFrame to {}'.format(dir))
     df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel))
 
 if __name__ == "__main__":
