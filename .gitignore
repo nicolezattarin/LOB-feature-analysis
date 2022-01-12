@@ -104,6 +104,14 @@ ipython_config.py
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
+#tex 
+*/tex*/*.log 
+*/tex*/*.nav 
+*/tex*/*.out 
+*/tex*/*.snm 
+*/tex*/*.gz 
+*tex*/*.toc
+
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
