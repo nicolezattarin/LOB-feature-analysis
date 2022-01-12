@@ -47,15 +47,15 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
         if bars is not None and time == 0:
             tbars = pd.DataFrame.from_records(bars[0])
             fbars = pd.DataFrame.from_records(bars[1])
-            tbars['timetab_volume_bar'] = time
-            fbars['timetab_volume_bar'] = time
+            tbars['label_volume_bar'] = time
+            fbars['label_volume_bar'] = time
             time += 1
             # ask_side, bid_side = book.askTree, book.bidTree
         elif bars is not None and time != 0:
             ttemp = pd.DataFrame.from_records(bars[0])
             ftemp = pd.DataFrame.from_records(bars[1])
-            ttemp['timetab_volume_bar'] = time
-            ftemp['timetab_volume_bar'] = time
+            ttemp['label_volume_bar'] = time
+            ftemp['label_volume_bar'] = time
             tbars = tbars.append(ttemp)
             fbars = fbars.append(ftemp)
             time += 1
