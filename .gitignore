@@ -105,12 +105,12 @@ ipython_config.py
 __pypackages__/
 
 #tex 
-*/tex*/*.log 
-*/tex*/*.nav 
-*/tex*/*.out 
-*/tex*/*.snm 
-*/tex*/*.gz 
-*tex*/*.toc
+*/tex/*.log 
+*/tex/*.nav 
+*/tex/*.out 
+*/tex/*.snm 
+*/tex/*.gz 
+*/tex/*.toc
 
 # Celery stuff
 celerybeat-schedule
