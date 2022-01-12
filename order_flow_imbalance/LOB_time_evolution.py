@@ -29,16 +29,19 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     messages = lob.parse_FullMessages(data)
     book = lob.LimitOrderBook(volume_threshold, ticksize)
 
-    bid_prices, bid_volumes, ask_prices, ask_volumes, time, mid_price = [],[],[],[],[],[]
+    bid_prices, bid_volumes, ask_prices, ask_volumes, time, mid_price, volume_bar_label = [],[],[],[],[],[],[]
 
     n_msg = int(len(messages)*data_frac)
+    label = 0
     for msg in tqdm(messages[:n_msg], desc="Reconstructing the book"):
         bars = book.generic_incremental_update(msg)
         if bars is not None:
+            # label volume bar
+            volume_bar_label.append(label)
+            label += 1
             ask_side, bid_side = book.askTree, book.bidTree
 
             if not (any(ask_side) and any(bid_side)): continue
-            
             ask = list(ask_side.values())
             bid = list(bid_side.values())
 
@@ -47,20 +50,22 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
             a = ask[:maxlevel]
             b = bid[:maxlevel]
 
-            # try: old_a and old_b
-            # except: #if old_a and old_b are not defined
-            #     old_a = a
-            #     old_b = b
-            # else: #check if the book has changed
-            #     if np.all(a == old_a) and np.all(b == old_b): continue
-            # old_a = a
-            # old_b = b
+            try: old_a and old_b
+            except: #if old_a and old_b are not defined
+                old_a = a
+                old_b = b
+            else: #check if the book has changed
+                if np.all(a == old_a) and np.all(b == old_b): continue
+            old_a = a
+            old_b = b
+
             ask_prices.append([x.price for x in a])
             ask_volumes.append([x.totalVolume for x in a])
             bid_prices.append([x.price for x in b])
             bid_volumes.append([x.totalVolume for x in b])
             mid_price.append(np.abs(a[0].price-b[0].price)/ticksize)
             time.append(book.datetime)
+
 
     df = pd.DataFrame(time,columns=['time'])
     for i in tqdm (range(maxlevel), desc = 'Assembling levels of the DataFrame'):
