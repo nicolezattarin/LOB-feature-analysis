@@ -63,7 +63,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
             ask_volumes.append([x.totalVolume for x in a])
             bid_prices.append([x.price for x in b])
             bid_volumes.append([x.totalVolume for x in b])
-            mid_price.append(np.abs(a[0].price-b[0].price)/ticksize)
+            mid_price.append(np.abs(a[0].price+b[0].price)/2)
             time.append(book.datetime)
 
 
@@ -74,7 +74,7 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
         df['bid_price_{}'.format(i)] = np.array(bid_prices, dtype=object)[:,i]
         df['bid_volume_{}'.format(i)] = np.array(bid_volumes, dtype=object)[:,i]
     df['mid_price'.format(i)] = mid_price
-
+    df['volume_bar_label'] = volume_bar_label
     import os
     dir = '../data_cleaned'
     if os.path.isdir(dir)==False:
