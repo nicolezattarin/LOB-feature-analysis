@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--data", default='../data_cleaned/time_evolution_10_levels.csv',  \
                     help="filename.", type=str)
 parser.add_argument("--maxlevel", default=10, help="Maximum level of the book to study", type=int)
-parser.add_argument("--time_delta", default=0.5, help="Time delta in seconds", type=float)
+parser.add_argument("--time_delta", default=30, help="Time delta in minutes", type=float)
 parser.add_argument("--acquisition_day", default='2020-04-06', \
                     help="First day of data acquisition in format YYYY-MM-DD", type=str)
 
@@ -77,18 +77,21 @@ def main(data, maxlevel, time_delta, acquisition_day):
         df['delta_V_{}'.format(i)] = delta_V
         df['e_{}'.format(i)] = df['delta_W_{}'.format(i)]-df['delta_V_{}'.format(i)]
 
-    #drop row without a previous item, does  not make sense in .diff
+    #drop row without a previous item, (does not make sense in .diff)
     df.index = range(len(df))
     df.drop ([0], axis=0, inplace=True)
     df.to_csv('../data_cleaned/time_evolution_{}_levels_processed.csv'.format(maxlevel),index=False)
 
-    time_delta = 1 #in seconds
+    # discretizig time
     bin_edges = []
     df = df.sort_values(['time_isoformat'], ignore_index=True)
+
     t = df['time_isoformat'].iloc[0]
+    print((min(df['time'])))
+    print((max(df['time'])))
 
     from datetime import timedelta
-    time_delta = timedelta(seconds=time_delta)
+    time_delta = timedelta(minutes=time_delta)
     while t <= df['time_isoformat'].iloc[-1] + time_delta:
         bin_edges.append(t)
         t = t + time_delta
@@ -98,8 +101,8 @@ def main(data, maxlevel, time_delta, acquisition_day):
     df = df.drop([nan_index], axis=0)
     df.index = range(len(df))
 
+    # computing mid_price_delta
     bins = df['time_bin'].unique()
-
     mid_price_delta = []
     ofi = pd.DataFrame(bins, columns=['time_bin'])
     ofi['bin_label'] = np.arange(len(bins))
@@ -113,7 +116,6 @@ def main(data, maxlevel, time_delta, acquisition_day):
         for l in range(maxlevel):
             ofi.iloc[index, l+2]= grouped['e_{}'.format(l)].sum()
         index += 1
-
     ofi['mid_price_delta'] = mid_price_delta
 
     ofi.to_csv('../data_cleaned/ofi_{}_levels.csv'.format(maxlevel), index=False)
