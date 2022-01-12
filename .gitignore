@@ -111,6 +111,7 @@ __pypackages__/
 */tex/*.snm 
 */tex/*.gz 
 */tex/*.toc
+*/tex/*.aux
 
 # Celery stuff
 celerybeat-schedule
