@@ -6,10 +6,12 @@ from datetime import datetime
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--data", default='../data_cleaned/time_evolution_10_levels.csv', help="filename.", type=str)
+parser.add_argument("--data", default='../data_cleaned/time_evolution_10_levels.csv',  \
+                    help="filename.", type=str)
 parser.add_argument("--maxlevel", default=10, help="Maximum level of the book to study", type=int)
 parser.add_argument("--time_delta", default=0.5, help="Time delta in seconds", type=float)
-parser.add_argument("--acquisition_day", default='2020-04-06', help="First day of data acquisition in format YYYY-MM-DD", type=str)
+parser.add_argument("--acquisition_day", default='2020-04-06', \
+                    help="First day of data acquisition in format YYYY-MM-DD", type=str)
 
 def main(data, maxlevel, time_delta, acquisition_day):
     """
@@ -33,7 +35,8 @@ def main(data, maxlevel, time_delta, acquisition_day):
     df.drop (df[df['time']<date_acquisition].index, axis=0, inplace=True)
     df = df.sort_values(['time'], ignore_index=True)
     # #clean meaningless datetime, being sure that the last elment has the right length
-    df.drop (df[[len(str((df['time'][i])))<len(str(list(df['time'])[-1])) for i in range(len(df))]].index, axis=0, inplace=True) 
+    df.drop (df[[len(str((df['time'][i])))<len(str(list(df['time'])[-1]))\
+             for i in range(len(df))]].index, axis=0, inplace=True) 
     conversion = 1e9
     df['time_isoformat'] = df['time'].apply(lambda x: datetime.fromtimestamp(x/conversion))
 
@@ -48,7 +51,7 @@ def main(data, maxlevel, time_delta, acquisition_day):
         delta_V = [0]
 
         j = 1
-        # for furture improvement: this process can be optimized by employing .diff and masks 
+        # for future improvement: this process can be optimized by employing .diff and masks 
         with tqdm(total=len(df)) as pbar:
             for bcheck, acheck in zip(check_bid_prices, check_ask_prices):
 
@@ -56,7 +59,7 @@ def main(data, maxlevel, time_delta, acquisition_day):
                     delta_W.append(np.array(df['bid_volume_{}'.format(i)])[j])
                 elif bcheck == 0:
                     delta_W.append(np.array(df['bid_volume_{}'.format(i)])[j] - \
-                                np.array(df['bid_volume_{}'.format(i)])[j-1])
+                                   np.array(df['bid_volume_{}'.format(i)])[j-1])
                 else:
                     delta_W.append(- np.array(df['bid_volume_{}'.format(i)])[j-1])
 
@@ -64,7 +67,7 @@ def main(data, maxlevel, time_delta, acquisition_day):
                     delta_V.append(np.array(df['ask_volume_{}'.format(i)])[j])
                 elif acheck == 0:
                     delta_V.append(np.array(df['ask_volume_{}'.format(i)])[j] - \
-                                np.array(df['ask_volume_{}'.format(i)])[j-1])
+                                   np.array(df['ask_volume_{}'.format(i)])[j-1])
                 else:
                     delta_V.append(np.array(-df['ask_volume_{}'.format(i)])[j-1])
                 j+=1
@@ -77,8 +80,7 @@ def main(data, maxlevel, time_delta, acquisition_day):
     #drop row without a previous item, does  not make sense in .diff
     df.index = range(len(df))
     df.drop ([0], axis=0, inplace=True)
-    df.to_csv('../data_cleaned/time_evolution_{}_levels_processed.csv'.format(maxlevel), index=False)
-
+    df.to_csv('../data_cleaned/time_evolution_{}_levels_processed.csv'.format(maxlevel),index=False)
 
     time_delta = 1 #in seconds
     bin_edges = []
@@ -95,7 +97,6 @@ def main(data, maxlevel, time_delta, acquisition_day):
     nan_index = df.loc[pd.isna(df["time_bin"]), :].index[0]
     df = df.drop([nan_index], axis=0)
     df.index = range(len(df))
-
 
     bins = df['time_bin'].unique()
 
