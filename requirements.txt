@@ -7,3 +7,5 @@ warnings
 tqdm
 db_lob 
 datetime
+sklearn
+keras
