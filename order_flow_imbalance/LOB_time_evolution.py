@@ -11,8 +11,10 @@ parser.add_argument("--volume_threshold", default=1000000, help="Volume threshol
 parser.add_argument("--ticksize", default=0.0001, help="ticksize", type=float)
 parser.add_argument("--maxlevel", default=10, help="maximum level of the book to study", type=int)
 parser.add_argument("--data_frac", default=0.01, help="fraction of messages to read", type=float)
+parser.add_argument("--only_changes", default=False, \
+help="if true, the informations are stored only if the first maxlevel levels of the book change", type=bool)
 
-def main(data, volume_threshold, ticksize, maxlevel, data_frac):
+def main(data, volume_threshold, ticksize, maxlevel, data_frac, only_changes):
     """
     Computes the necessary quantities to compute the order flow imbalance, 
     see R. Cont, A. Kukanov, S. Stoikov, 'The Price Impact of Order Book Events', and
@@ -36,9 +38,6 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
     for msg in tqdm(messages[:n_msg], desc="Reconstructing the book"):
         bars = book.generic_incremental_update(msg)
         if bars is not None:
-            # label volume bar
-            volume_bar_label.append(label)
-            label += 1
             ask_side, bid_side = book.askTree, book.bidTree
 
             if not (any(ask_side) and any(bid_side)): continue
@@ -50,14 +49,19 @@ def main(data, volume_threshold, ticksize, maxlevel, data_frac):
             a = ask[:maxlevel]
             b = bid[:maxlevel]
 
-            try: old_a and old_b
-            except: #if old_a and old_b are not defined
+            if only_changes:
+                try: old_a and old_b
+                except: #if old_a and old_b are not defined
+                    old_a = a
+                    old_b = b
+                else: #check if the book has changed
+                    if np.all(a == old_a) and np.all(b == old_b): continue
                 old_a = a
                 old_b = b
-            else: #check if the book has changed
-                if np.all(a == old_a) and np.all(b == old_b): continue
-            old_a = a
-            old_b = b
+                
+            # label volume bar
+            volume_bar_label.append(label)
+            label += 1
 
             ask_prices.append([x.price for x in a])
             ask_volumes.append([x.totalVolume for x in a])
