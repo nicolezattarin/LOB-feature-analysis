@@ -4,9 +4,8 @@ from tqdm import tqdm
 import argparse
 from datetime import datetime
 
-
 parser = argparse.ArgumentParser()
-parser.add_argument("--data", default='../data_cleaned/time_evolution_10_levels.csv',  \
+parser.add_argument("--data", default='../data_cleaned/time_evolution_10_levels_natural.csv',  \
                     help="filename.", type=str)
 parser.add_argument("--maxlevel", default=10, help="Maximum level of the book to study", type=int)
 parser.add_argument("--time_delta", default=1, help="Time delta in minutes", type=float)
