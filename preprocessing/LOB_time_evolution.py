@@ -117,7 +117,7 @@ def main(data, volume_threshold, ticksize, maxlevel,time_discretization, data_fr
     if os.path.isdir(dir)==False:
             os.mkdir(dir)
     print('Saving the DataFrame to {}'.format(dir))
-    df.to_csv(dir+'/time_evolution_{}_levels.csv'.format(maxlevel), index=False)
+    df.to_csv(dir+'/time_evolution_{}_levels_{}.csv'.format(maxlevel, time_discretization), index=False)
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())
