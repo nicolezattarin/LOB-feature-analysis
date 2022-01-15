@@ -1,8 +1,7 @@
 # LOB-feature-analysis
-Upload .csv files [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk?usp=sharing)
+Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk?usp=sharing)
 
-##  Setup 
-### For Linux users
+##  Setup a working environment (Linux only)
 1. Create environment:
 
     `conda list --explicit > spec-file.txt`
@@ -14,9 +13,9 @@ Upload .csv files [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3
     
     `cd /opt/anaconda3/envs/projectenv/lib/python3.8/site-packages`
     
-    `cp path/package/db_lob.cpython-39-x86_64-linux-gnu.so .`
+    `cp path/db_lob.cpython-39-x86_64-linux-gnu.so .`
     
-    `cp -r path/package/db_lob-0.0.5.dist-info .`
+    `cp -r path/db_lob-0.0.5.dist-info .`
     
 3. Work in the new enviroment:
     `conda activate projectenv`
@@ -25,25 +24,24 @@ Upload .csv files [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3
     `conda install ipykernel`
     `ipython kernel install --user --name=projectenv`
 
-### For OSX users
-Setup a VM with conda and install the package.
-
-Or, for us to work:
-
-* Download a RDP client (from app store [Microsoft Remote Desktop](https://apps.apple.com/it/app/microsoft-remote-desktop/id1295203466?mt=12))
-* PC name: 20.108.243.79:3389
-* Work in the env with the package intalled: `conda activate project`
-* in Jupyter lab use project kernel to run jupyter notebooks, while xsor env works only running python scripts
-
 ## What is a limit order book (LOB)?
-![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/LOB.png)
+
+<p align="center">
+<img src="figures/LOB.png"  width="800"/> </p>
+
 
 ## Order flow imbalance
- ![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI.png)
 
-![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_ex1.png)
+<p align="center">
+<img src="figures/figures/OFI.png"  width="800"/> </p>
 
-![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_ex2.png)
+
+<p align="center">
+<img src="figures/figures/OFI_ex1.png"  width="800"/> </p>
+
+<p align="center">
+<img src="figures/figures/OFI_ex2.png"  width="800"/> </p>
+
 
 ## Probability of Informed Trading
 
