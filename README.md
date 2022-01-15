@@ -44,4 +44,7 @@ Such quantity depends on the following parameters:
 * $\mu$: rate of arrival of informed traders;
 * $\epsilon$: rate of arrival of uninformed traders.
 
-Once these parameters are known it can be computed by applying a maximum likelihood approach
+Once these parameters are known it can be computed by applying a maximum likelihood approach:
+
+
+![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/pin_formula.png)
