@@ -48,3 +48,5 @@ Once these parameters are known it can be computed by applying a maximum likelih
 
 
 ![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/pin_formula.png)
+
+![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/pin_likelihood.png)
