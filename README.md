@@ -39,8 +39,7 @@ Or, for us to work:
 ![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/LOB.png)
 
 ## Order flow imbalance
- 
-![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_def.png)
+ ![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI.png)
 
 ![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_ex1.png)
 
