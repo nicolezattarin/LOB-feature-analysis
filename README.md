@@ -27,20 +27,20 @@ Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5
 ## What is a limit order book (LOB)?
 
 <p align="center">
-<img src="figures/LOB.png"  width="800"/> </p>
+<img src="figures/LOB.png"  width="600"/> </p>
 
 
 ## Order flow imbalance
 
 <p align="center">
-<img src="figures/figures/OFI.png"  width="800"/> </p>
+<img src="figures/OFI.png"  width="600"/> </p>
 
 
 <p align="center">
-<img src="figures/figures/OFI_ex1.png"  width="800"/> </p>
+<img src="figures/OFI_ex1.png"  width="800"/> </p>
 
 <p align="center">
-<img src="figures/figures/OFI_ex2.png"  width="800"/> </p>
+<img src="figures/OFI_ex2.png"  width="800"/> </p>
 
 
 ## Probability of Informed Trading
@@ -54,7 +54,11 @@ Such quantity depends on the following parameters:
 
 Once these parameters are known it can be computed by applying a maximum likelihood approach:
 
+<p align="center">
+<img src="figures/pin_formula.png"  width="200"/> 
+</p>
 
-![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/pin_formula.png)
+<p align="center">
+<img src="figures/pin_likelihood.png"  width="1000"/> 
+</p>
 
-![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/pin_likelihood.png)
