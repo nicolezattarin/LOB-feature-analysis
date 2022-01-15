@@ -55,8 +55,9 @@ Such quantity depends on the following parameters:
 Once these parameters are known it can be computed by applying a maximum likelihood approach:
 
 <p align="center">
-<img src="figures/pin_formula.png"  width="100"/> 
+<img src="figures/pin_formula.png"  width="200"/> 
 </p>
+
 
 <p align="center">
 <img src="figures/pin_likelihood.png"  width="1000"/> 
