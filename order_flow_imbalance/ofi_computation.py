@@ -33,7 +33,7 @@ def main(data, maxlevel, time_delta, acquisition_day, tick_size=1e-4):
     #clean datetime according to the date of acquisition
     df.drop (df[df['time']<date_acquisition].index, axis=0, inplace=True)
     df = df.sort_values(['time'], ignore_index=True)
-    # #clean meaningless datetime, being sure that the last elment has the right length
+    # clean meaningless datetime, being sure that the last elment has the right length
     df.drop (df[[len(str((df['time'][i])))<len(str(list(df['time'])[-1]))\
              for i in range(len(df))]].index, axis=0, inplace=True) 
     conversion = 1e9
@@ -89,7 +89,6 @@ def main(data, maxlevel, time_delta, acquisition_day, tick_size=1e-4):
     df = df.sort_values(['time_isoformat'], ignore_index=True)
 
     t = df['time_isoformat'].iloc[0]
-
     from datetime import timedelta
     time_delta = timedelta(minutes=time_delta)
     while t <= df['time_isoformat'].iloc[-1] + time_delta:

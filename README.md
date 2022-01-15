@@ -25,16 +25,37 @@ Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5
     `ipython kernel install --user --name=projectenv`
 
 ## What is a limit order book (LOB)?
+A LOB is essentially a data structure that contains all the orders sent to the market, with their characteristics: sign of the order (buy or sell), price, volume, timestamp etc. So it contains, at any given point in time, on a given market, the list of all the transactions that one could possibly perform on this market.
 
 <p align="center">
 <img src="figures/LOB.png"  width="600"/> </p>
 
+The main idea is that trades occur when orders of different sides match their prices: a side takes on the role of the *aggressor* at a given price, and if there is a resting order on the other side at the same price the trade happens.
+
+Therefore, since bidders want to buy at the lower possible price, the most appealing order for a bidder is the level of the ask side corresponding to the lower price. On the other hand, traders on the ask side want to sell at the highest price, thus the most appealing trades correspond to the highest price on the the bid side.
+
+
+### Types of orders 
+Essentially, three types of orders can be submitted:
+
+* Limit order: to specify a price at which one is willing to buy or sell a certain number of shares, with their corresponding price and quantity, at any point in time;
+* Market order: to immediately buy or sell a certain quantity, at the best available opposite quote;
+* Cancellation order: to cancel an existing limit order.
+
 
 ## Order flow imbalance
+
+The LOB can be used to see how the shift in orders volumes and prices can give information about the future movement of prices. In particular, the Order flow imbalance (OFI) and its multi-level counterpart Multi Level OFI (MLOFI), may be employed as a price predictor. 
+For instance, if we consider the first level of the book informally define the order flow imbalance as the imbalance between demand and supply at the best bid and ask prices. Thus, it has an explanatory power of the traders' intentions.
+
+
+
+The formal definition follows:
 
 <p align="center">
 <img src="figures/OFI.png"  width="800"/> </p>
 
+Let us now consider as an examples how the LOB evolves if we consider it up to the second level:
 
 <p align="center">
 <img src="figures/OFI_ex1.png"  width="800"/> </p>
@@ -61,4 +82,6 @@ Once these parameters are known it can be computed by applying a maximum likelih
 <p align="center">
 <img src="figures/pin_likelihood.png"  width="800"/> 
 </p>
+
+## Resources
 

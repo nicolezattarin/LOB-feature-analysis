@@ -14,7 +14,7 @@ def main(tick_size=1e-4,time_conversion=1e9):
     df['AggressorSide'] = df['AggressorSide'].apply(lambda x: -1 if x==49 else 1) #-1 bid side, 1 ask side
     df["LastPx"]*=tick_size
 
-    time_delta = 1 #in minutes
+    time_delta = 5 #in minutes
     bin_edges = []
 
     #discretizing time in time_delta
