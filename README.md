@@ -33,7 +33,7 @@ Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5
 ## Order flow imbalance
 
 <p align="center">
-<img src="figures/OFI.png"  width="600"/> </p>
+<img src="figures/OFI.png"  width="800"/> </p>
 
 
 <p align="center">
@@ -55,7 +55,7 @@ Such quantity depends on the following parameters:
 Once these parameters are known it can be computed by applying a maximum likelihood approach:
 
 <p align="center">
-<img src="figures/pin_formula.png"  width="200"/> 
+<img src="figures/pin_formula.png"  width="100"/> 
 </p>
 
 <p align="center">
