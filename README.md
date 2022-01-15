@@ -58,8 +58,7 @@ Once these parameters are known it can be computed by applying a maximum likelih
 <img src="figures/pin_formula.png"  width="200"/> 
 </p>
 
-
 <p align="center">
-<img src="figures/pin_likelihood.png"  width="1000"/> 
+<img src="figures/pin_likelihood.png"  width="800"/> 
 </p>
 
