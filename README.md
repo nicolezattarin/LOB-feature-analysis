@@ -39,10 +39,10 @@ Or, for us to work:
 
 The probability of informed trading (PIN) measures how likely it is that some players engage in informed trading, while the rest simply trade randomly.
 Such quantity depends on the following parameters:
-* $\alpha$: probability that new information will arrive within the timeframe of the analysis;
-*  $\delta$: probability 𝛿 that the news will be bad;
-* $\mu$: rate of arrival of informed traders;
-* $\epsilon$: rate of arrival of uninformed traders.
+* alpha: probability that new information will arrive within the timeframe of the analysis;
+* delta: probability 𝛿 that the news will be bad;
+* mu: rate of arrival of informed traders;
+* epsilon: rate of arrival of uninformed traders.
 
 Once these parameters are known it can be computed by applying a maximum likelihood approach:
 
