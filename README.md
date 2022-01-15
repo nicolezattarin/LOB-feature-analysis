@@ -68,6 +68,7 @@ Let us now consider as an examples how the LOB evolves if we consider it up to t
 
 The probability of informed trading (PIN) measures how likely it is that some players engage in informed trading, while the rest simply trade randomly.
 Such quantity depends on the following parameters:
+
 * alpha: probability that new information will arrive within the timeframe of the analysis;
 * delta: probability 𝛿 that the news will be bad;
 * mu: rate of arrival of informed traders;
@@ -76,12 +77,23 @@ Such quantity depends on the following parameters:
 Once these parameters are known it can be computed by applying a maximum likelihood approach:
 
 <p align="center">
-<img src="figures/pin_formula.png"  width="200"/> 
+<img src="figures/pin_formula.png"  width="180"/> 
 </p>
-
+where the parameters maximize the product of likelihood computed on each interval of time. Thus, we discretize time, for each interval we compute the following quantity, as a superposition of poisson PMF:
 <p align="center">
 <img src="figures/pin_likelihood.png"  width="800"/> 
 </p>
+and then we optimize the product of all the likelihoods on the whole day.
 
 ## Resources
+[1] *The Price Impact of Order Book Events*, R. Cont, A. Kukanov, S. Stoikov (2013)
 
+[2] *Multi-Level Order-Flow Imbalance in a Limit Order Book*, K. Xu, M. D. Gould, and S. D. Howison
+
+[3] *Advances in Financial Machine Learning*, Lopez de Prado (2018), chapter 19.5.1.
+
+[4] *Liquidity, Information, and Infrequently Traded Stocks*, D. Easley et al.
+
+[5] *Limit Order Books* F. Abergel, M. Anane, A. Chakraborti, Cambridge University Press
+
+[6] *Quantitative finance for physicist: an introduction*, A B. Schmidt
