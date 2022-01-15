@@ -35,6 +35,17 @@ Or, for us to work:
 * Work in the env with the package intalled: `conda activate project`
 * in Jupyter lab use project kernel to run jupyter notebooks, while xsor env works only running python scripts
 
+## What is a limit order book (LOB)?
+![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/LOB.png)
+
+## Order flow imbalance
+ 
+![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_def.png)
+
+![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_ex1.png)
+
+![](https://github.com/nicolezattarin/LOB-feature-analysis/blob/main/figures/OFI_ex2.png)
+
 ## Probability of Informed Trading
 
 The probability of informed trading (PIN) measures how likely it is that some players engage in informed trading, while the rest simply trade randomly.
