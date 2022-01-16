@@ -53,7 +53,7 @@ For instance, if we consider the first level of the book informally define the o
 The formal definition follows:
 
 <p align="center">
-<img src="figures/OFI.png"  width="800"/> </p>
+<img src="figures/OFI.png"  width="600"/> </p>
 
 Let us now consider as an examples how the LOB evolves if we consider it up to the second level:
 
