@@ -53,7 +53,7 @@ We are working on a given list of messages that can be processed by employing th
 The main workflow follows:
 
 1. A message is read in the trade market and it is casted to the right kind of message;
-2. The information of the messages are employed to update the state of the book;
+2. Informations of the messages are employed to update the state of the book;
 3. Messages are collected until the cumulative traded volumes
 exceed a fixed **threshold**;
 4. Once the threshold is exceed a bar is created, and the data inside it gets
