@@ -21,7 +21,9 @@ Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5
     `conda activate projectenv`
     
 4. Create kernel:
+
     `conda install ipykernel`
+    
     `ipython kernel install --user --name=projectenv`
 
 ## What is a limit order book (LOB)?
