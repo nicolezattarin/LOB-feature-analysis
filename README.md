@@ -2,7 +2,7 @@
 Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk?usp=sharing)
 
 ##  Setup a working environment (Linux only)
-1. Create environment:
+1. Create environment by cloning your own base enviroment:
 
     `conda list --explicit > spec-file.txt`
     
@@ -16,11 +16,14 @@ Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5
     `cp path/db_lob.cpython-39-x86_64-linux-gnu.so .`
     
     `cp -r path/db_lob-0.0.5.dist-info .`
+
+3. Intall modules if needed:
+    `pip install -r requirements.txt`
     
-3. Work in the new enviroment:
+4. Work in the new enviroment:
     `conda activate projectenv`
     
-4. Create kernel:
+5. Create kernel to work in the notebook:
 
     `conda install ipykernel`
     

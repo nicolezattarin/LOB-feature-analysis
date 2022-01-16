@@ -3,7 +3,6 @@ import pandas as pd
 from tqdm import tqdm
 import db_lob as lob
 import argparse
-import logging 
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--data", default='../data/2505133.csv', help="filename.", type=str)

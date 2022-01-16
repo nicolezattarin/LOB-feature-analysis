@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
-def main(tick_size=1e-4,time_conversion=1e9): 
+def main(tick_size=1e-4, time_conversion=1e9): 
 
     df=pd.read_csv("../data_cleaned/tbars.csv")
     # drop timetags which are previous to observation day
