@@ -30,12 +30,12 @@ Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5
     `ipython kernel install --user --name=projectenv`
 
 ## What is a limit order book (LOB)?
-A LOB is essentially a data structure that contains all the orders sent to the market, with their characteristics: sign of the order (buy or sell), price, volume, timestamp etc. So it contains, at any given point in time, on a given market, the list of all the transactions that one could possibly perform on this market.
+A LOB is the set of all active orders in a market at a given time. It is essentially a data structure that contains all the orders sent to the market, with their characteristics: sign of the order (buy or sell), price, volume, timestamp etc. So it contains, at any given point in time, on a given market, the list of all the transactions that one could possibly perform on this market.
 
 <p align="center">
 <img src="figures/LOB.png"  width="600"/> </p>
 
-The main idea is that trades occur when orders of different sides match their prices: a side takes on the role of the *aggressor* at a given price, and if there is a resting order on the other side at the same price the trade happens.
+The main idea is that trades occur when orders of different sides match their prices: a side takes on the role of the *aggressor* at a given price, and if there is a resting order, i.e. *limit* order, on the other side at the same price the trade happens.
 
 Therefore, since bidders want to buy at the lower possible price, the most appealing order for a bidder is the level of the ask side corresponding to the lower price. On the other hand, traders on the ask side want to sell at the highest price, thus the most appealing trades correspond to the highest price on the the bid side.
 
@@ -51,7 +51,7 @@ Essentially, three types of orders can be submitted:
 
 ### Messages and volume bars
 To build a LOB we should start considering a list of messages in the trade market: every message correspond to a certain action in the market that can modify the structure of the LOB.
-We are working on a given list of messages that can be processed by employing the library provided by XOR Capital: **db_lob**. 
+We are working on a given list of messages that can be processed by employing the library provided by XSOR Capital: **db_lob**. 
 
 The main workflow follows:
 
@@ -62,7 +62,7 @@ exceed a fixed **threshold**;
 4. Once the threshold is exceed a bar is created, and the data inside it gets
 aggregated.
 
-The idea behind this approach is that, instead of aggregating data according to a fixed discetization of time, we aggregate data focusing on the **activity of a security**. This way the threshold value represents the "activity threshold".
+The idea behind this approach is that, instead of aggregating data according to a fixed discetization of time or sampling frequency, we aggregate data focusing on the **activity of a security**. This way the threshold value represents the "activity threshold".
 
 Another parameter that is required by the LOB is the tick size. In an order
 book, the possible prices at which a security is traded are discrete, the discretization interval is referred as tick size.
@@ -148,6 +148,17 @@ where the parameters maximize the product of likelihood computed on each interva
 </p>
 and then we optimize the product of all the likelihoods on the whole day.
 
+### Volatility
+
+The volatility of an asset provides some indication of how risky it is. All else held equal, an asset with higher volatility is expected to undergo larger price changes than an asset with lower volatility.
+
+We can estimate the probability by noting the price returns at either regular time intervals or every *n* market orders. The second option would allow us to compare volatilities of assets with different sampling frequencies. We define the *realized volatility per trade*:
+
+<p align="center">
+<img src="figures/Volatility.png"  width="900"/> </p>
+
+Thus, we estimate the volatility of both sides at the 1st level of the book.
+
 ## Resources
 [1] *The Price Impact of Order Book Events*, R. Cont, A. Kukanov, S. Stoikov (2013)
 
@@ -155,8 +166,12 @@ and then we optimize the product of all the likelihoods on the whole day.
 
 [3] *Advances in Financial Machine Learning*, Lopez de Prado (2018), chapter 19.5.1.
 
-[4] *Liquidity, Information, and Infrequently Traded Stocks*, D. Easley et al.
+[4] *Liquidity, Information, and Infrequently Traded Stocks*, D. Easley et al. (1996), The Journal of Finance, 51:4, 1405-1436.
 
 [5] *Limit Order Books* F. Abergel, M. Anane, A. Chakraborti, Cambridge University Press
 
 [6] *Quantitative finance for physicist: an introduction*, A B. Schmidt
+
+[7] *Limit Order Books* Martin D. Gould et al. (2013), Quantitative Finance, 13:11, 1709-1742.
+
+
