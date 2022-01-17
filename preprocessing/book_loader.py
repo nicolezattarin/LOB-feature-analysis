@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--messages_file_path", default='../data/2505133.csv', help="filename.", type=str)
 parser.add_argument("--volume_threshold", default=1000000, help="Volume threshold", type=int)
 parser.add_argument("--ticksize", default=0.0001, help="ticksize", type=float)
-parser.add_argument("--data_frac", default=0.95, help="fraction of messages to read", type=float)
+parser.add_argument("--data_frac", default=1, help="fraction of messages to read", type=float)
 
 
 def main(messages_file_path, volume_threshold, ticksize, data_frac):
@@ -36,7 +36,6 @@ def main(messages_file_path, volume_threshold, ticksize, data_frac):
     #building the book
     book = lob.LimitOrderBook(volume_threshold, ticksize)
 
-    # ZATTA fix datafrac = 1
     print("Building the LOB...")
     print(messages_file_path)
 

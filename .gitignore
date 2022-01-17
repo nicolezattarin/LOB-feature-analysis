@@ -10,6 +10,10 @@ __pycache__/
 #env extensions
 *spec-file.txt
 
+# package
+package/*
+*/package
+
 #data
 *2505133.csv
 *data/*
