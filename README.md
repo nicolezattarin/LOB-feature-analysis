@@ -51,7 +51,7 @@ Essentially, three types of orders can be submitted:
 
 ### Messages and volume bars
 To build a LOB we should start considering a list of messages in the trade market: every message correspond to a certain action in the market that can modify the structure of the LOB.
-We are working on a given list of messages that can be processed by employing the library provided by XSOR Capital: **db_lob**. 
+We are working on a given list of messages that can be processed by employing db-lob, A LimitOrderBook implementation for Deutsche Börse. With numpy interfacing [8]. 
 
 The main workflow follows:
 
