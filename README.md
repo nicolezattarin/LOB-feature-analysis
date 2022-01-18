@@ -174,4 +174,4 @@ Thus, we estimate the volatility of both sides at the 1st level of the book.
 
 [7] *Limit Order Books* Martin D. Gould et al. (2013), Quantitative Finance, 13:11, 1709-1742.
 
-
+[8] *db-lob, A LimitOrderBook implementation for Deutsche Börse. With numpy interfacing*, Andrea Perin, Federico Graceffa 
