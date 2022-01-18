@@ -1,5 +1,6 @@
 # LOB-feature-analysis
 Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk?usp=sharing)
+Thanks to Andrea Perin and Federico Graceffa for the patience and help. 
 
 ##  Setup a working environment (Linux only)
 1. Create environment by cloning your own base enviroment:
