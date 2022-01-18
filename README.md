@@ -161,7 +161,7 @@ We can estimate the probability by noting the price returns at either regular ti
 
 Thus, we estimate the volatility of both sides at the 1st level of the book.
 
-## Resources
+## References
 [1] *The Price Impact of Order Book Events*, R. Cont, A. Kukanov, S. Stoikov (2013)
 
 [2] *Multi-Level Order-Flow Imbalance in a Limit Order Book*, K. Xu, M. D. Gould, and S. D. Howison
