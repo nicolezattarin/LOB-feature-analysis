@@ -155,7 +155,7 @@ The volatility of an asset provides some indication of how risky it is. All else
 We can estimate the probability by noting the price returns at either regular time intervals or every *n* market orders. The second option would allow us to compare volatilities of assets with different sampling frequencies. We define the *realized volatility per trade*:
 
 <p align="center">
-<img src="figures/Volatility.png"  width="900"/> </p>
+<img src="figures/Volatility.png"  width="700"/> </p>
 
 Thus, we estimate the volatility of both sides at the 1st level of the book.
 
