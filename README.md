@@ -1,6 +1,8 @@
 # LOB-feature-analysis
 Complete dataset available [here](https://drive.google.com/drive/folders/1LP0KT5O1YQT1Vf3692nPeoT5SCsrJtUk?usp=sharing)
 
+Thanks to Andrea Perin and Federico Graceffa for the patience and help. 
+
 ##  Setup a working environment (Linux only)
 1. Create environment by cloning your own base enviroment:
 
@@ -51,7 +53,7 @@ Essentially, three types of orders can be submitted:
 
 ### Messages and volume bars
 To build a LOB we should start considering a list of messages in the trade market: every message correspond to a certain action in the market that can modify the structure of the LOB.
-We are working on a given list of messages that can be processed by employing the library provided by XSOR Capital: **db_lob**. 
+We are working on a given list of messages that can be processed by employing db-lob, A LimitOrderBook implementation for Deutsche Börse. With numpy interfacing [8]. 
 
 The main workflow follows:
 
@@ -155,11 +157,11 @@ The volatility of an asset provides some indication of how risky it is. All else
 We can estimate the probability by noting the price returns at either regular time intervals or every *n* market orders. The second option would allow us to compare volatilities of assets with different sampling frequencies. We define the *realized volatility per trade*:
 
 <p align="center">
-<img src="figures/Volatility.png"  width="900"/> </p>
+<img src="figures/Volatility.png"  width="700"/> </p>
 
 Thus, we estimate the volatility of both sides at the 1st level of the book.
 
-## Resources
+## References
 [1] *The Price Impact of Order Book Events*, R. Cont, A. Kukanov, S. Stoikov (2013)
 
 [2] *Multi-Level Order-Flow Imbalance in a Limit Order Book*, K. Xu, M. D. Gould, and S. D. Howison
@@ -174,4 +176,4 @@ Thus, we estimate the volatility of both sides at the 1st level of the book.
 
 [7] *Limit Order Books* Martin D. Gould et al. (2013), Quantitative Finance, 13:11, 1709-1742.
 
-
+[8] *db-lob, A LimitOrderBook implementation for Deutsche Börse. With numpy interfacing*, Andrea Perin, Federico Graceffa 
