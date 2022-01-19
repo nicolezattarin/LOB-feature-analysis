@@ -14,7 +14,7 @@ parser.add_argument("--data_frac", default=1, help="fraction of messages to read
 parser.add_argument("--only_changes", default=False, \
 help="if true, the informations are stored only if the first maxlevel levels of the book change", type=bool)
 
-def main(data, volume_threshold, ticksize, maxlevel,time_discretization, data_frac, only_changes):
+def main(data, volume_threshold, ticksize, maxlevel, time_discretization, data_frac, only_changes):
     """
     Computes the necessary quantities to compute the order flow imbalance, 
     see R. Cont, A. Kukanov, S. Stoikov, 'The Price Impact of Order Book Events', and
@@ -24,8 +24,10 @@ def main(data, volume_threshold, ticksize, maxlevel,time_discretization, data_fr
         data: path to the dataframe containing the raw messages
         volume_threshold: volume threshold build a volume bar
         ticksize: discretization interval of prices at which a security is
-        maxleveò: maximum level of the book to study
+        maxlevel: maximum level of the book to study
+        time_discretization: how to discretize time, if in volumebar or natural (i.e. each time aa message is read)
         data_frac: fraction of messages to read
+        only_changes: if true, the informations are stored only if the first maxlevel levels of the book change
     """
 
     messages = lob.parse_FullMessages(data)
